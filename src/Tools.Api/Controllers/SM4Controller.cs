@@ -30,11 +30,11 @@ namespace Tools.Controllers
             entity.Data = "tuserid002";//"{\"type\":\"identity\",\"identity\":\"11111\",\"timestamp\":\"2021-11-11 11:11:11\"}";
             entity.HexString = false;
             string hex = SM4Crypto.EncryptECB(entity);
-            Console.WriteLine("加密后的密文(hex): {0}", hex);
+            _logger.LogInformation("加密后的密文(hex): {0}", hex);
             string base64 = SM4Crypto.EncryptECBToBase64(entity);
-            Console.WriteLine("加密后的密文(base64): {0}", base64);
+            _logger.LogInformation("加密后的密文(base64): {0}", base64);
             //11d9b2e155ae15a9525455ba0a7ceed0
-            Console.WriteLine(base64);
+            _logger.LogInformation(base64);
 
             return Ok(new
             {
@@ -59,12 +59,12 @@ namespace Tools.Controllers
             byte[] keyBytes = Encoding.UTF8.GetBytes("sW93ZE8rjDeD3!1m");
 
             byte[] cipher = SM4Util.Encrypt_ECB_Padding(keyBytes, plaintext);
-            Console.WriteLine("加密后的密文(hex): {0}", Hex.ToHexString(cipher).ToUpper());
-            Console.WriteLine("加密后的密文(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
-            Console.WriteLine("加密后的密文(base64): {0}", Convert.ToBase64String(cipher));
+            _logger.LogInformation("加密后的密文(hex): {0}", Hex.ToHexString(cipher).ToUpper());
+            _logger.LogInformation("加密后的密文(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
+            _logger.LogInformation("加密后的密文(base64): {0}", Convert.ToBase64String(cipher));
 
             byte[] decryptedData = SM4Util.Decrypt_ECB_Padding(keyBytes, cipher);
-            Console.WriteLine("解密: {0}", Encoding.UTF8.GetString(decryptedData));
+            _logger.LogInformation("解密: {0}", Encoding.UTF8.GetString(decryptedData));
 
             return Ok(new
             {
@@ -85,12 +85,12 @@ namespace Tools.Controllers
             byte[] keyBytes = Hex.Decode("0123456789abcdeffedcba9876543210");//长度： 16B
 
             byte[] cipher = SM4Util.Encrypt_ECB_NoPadding(keyBytes, plaintext);
-            Console.WriteLine("加密后的密文(hex): {0}", Hex.ToHexString(cipher).ToUpper());
-            Console.WriteLine("加密后的密文(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
-            Console.WriteLine("加密后的密文(base64): {0}", Convert.ToBase64String(cipher));
+            _logger.LogInformation("加密后的密文(hex): {0}", Hex.ToHexString(cipher).ToUpper());
+            _logger.LogInformation("加密后的密文(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
+            _logger.LogInformation("加密后的密文(base64): {0}", Convert.ToBase64String(cipher));
 
             byte[] decryptedData = SM4Util.Decrypt_ECB_NoPadding(keyBytes, cipher);
-            Console.WriteLine("解密: {0}", Hex.ToHexString(decryptedData));
+            _logger.LogInformation("解密: {0}", Hex.ToHexString(decryptedData));
             //如果自动会补字节数
             //output.WriteLine("解密: {0}", Encoding.UTF8.GetString(decryptedData));
 
@@ -122,12 +122,12 @@ namespace Tools.Controllers
             //byte[] iv = SM4Util.GenerateKey(16);
 
             byte[] cipher = SM4Util.Encrypt_CBC_NoPadding(keyBytes, iv, plaintext);
-            Console.WriteLine("加密后的密文(hex): {0}", Hex.ToHexString(cipher).ToUpper());
-            Console.WriteLine("加密后的密文(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
-            Console.WriteLine("加密后的密文(base64): {0}", Convert.ToBase64String(cipher));
+            _logger.LogInformation("加密后的密文(hex): {0}", Hex.ToHexString(cipher).ToUpper());
+            _logger.LogInformation("加密后的密文(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
+            _logger.LogInformation("加密后的密文(base64): {0}", Convert.ToBase64String(cipher));
 
             byte[] decryptedData = SM4Util.Decrypt_CBC_NoPadding(keyBytes, iv, cipher);
-            Console.WriteLine("解密: {0}", Hex.ToHexString(decryptedData));
+            _logger.LogInformation("解密: {0}", Hex.ToHexString(decryptedData));
 
             return Ok(new
             {

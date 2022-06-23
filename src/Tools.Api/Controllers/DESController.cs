@@ -26,36 +26,35 @@ namespace Tools.Controllers
             string password = "12345678";
             //string sourceString = "{'idcard':'330781198509077211','date':'2021-11-11 19:04'}";
             string sourceString = JsonConvert.SerializeObject(inputUser);
-            Console.WriteLine("源字符串：" + sourceString);
+            _logger.LogInformation("源字符串：" + sourceString);
 
             var c = DESUtil.Encrypt(sourceString, password);
             //加密：3tL0BBKZyUpIfO+XJKL1VoeQhEWc0enGG8R//RPBJQCiykspXEBmvabp8yrWTBv+QUL62K7dUL+vbpYV/PwZvw==
-            Console.WriteLine("加密：" + c);
+            _logger.LogInformation("加密：" + c);
 
             c = HttpUtility.UrlEncode(c);
-            Console.WriteLine("url编码：" + c);
+            _logger.LogInformation("url编码：" + c);
 
-            Console.WriteLine("================");
+            _logger.LogInformation("================");
 
             c = HttpUtility.UrlDecode(c);
-            Console.WriteLine("url解码：" + c);
+            _logger.LogInformation("url解码：" + c);
             try
             {
                 c = DESUtil.Decrypt(c, password);
-                Console.WriteLine("url解密：" + c);
+                _logger.LogInformation("url解密：" + c);
 
                 var user = JsonConvert.DeserializeObject<User>(c);
-                Console.WriteLine("反序列化\n日期：" + user.date);
-                Console.WriteLine("身份证号：" + user.idcard);
+                _logger.LogInformation("反序列化\n日期：" + user.date);
+                _logger.LogInformation("身份证号：" + user.idcard);
                 return user;
             }
             catch (Exception e)
             {
-                Console.WriteLine("无法解密：" + e.StackTrace + e.Message);
+                _logger.LogInformation("无法解密：" + e.StackTrace + e.Message);
             }
 
-            Console.WriteLine("------over--------");
-            Console.ReadLine();
+            _logger.LogInformation("------over--------");
 
             return null;
         }

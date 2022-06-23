@@ -64,17 +64,21 @@ url解密：{'idcard':'330781198509077211','date':'2021-11-11 19:04'}
 
 
             string md5 = MD5Util.Md5(sourceString);
-            Console.WriteLine("       md5:" + md5);
+            Console.WriteLine("            md5:" + md5);
 
             md5 = MD5Util.Md5Hash(sourceString);
-            Console.WriteLine("       md5:" + md5);
+            Console.WriteLine("            md5:" + md5);
 
             md5 = MD5Util.Md5ToBase64(sourceString);
-            Console.WriteLine("base64-md5:" + md5);
+            Console.WriteLine("     base64-md5:" + md5);
+
+            md5 = MD5Util.Md5ToBase64(sourceString, MD5Digit.Digit16);
+            Console.WriteLine("16位 base64-md5:" + md5);
             /*
                md5:066ACD44ECCB4D35667367390E920AD2
                md5:066ACD44ECCB4D35667367390E920AD2
         base64-md5:BMRNROZLTTVMC2C5DPIK0G==
+   16位 base64-md5:7MTNNWZZZZK=
              */
             Console.ReadLine();
         }
