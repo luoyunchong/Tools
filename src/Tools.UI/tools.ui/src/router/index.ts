@@ -11,7 +11,18 @@ const routes: Array<RouteRecordRaw> = [
             requireAuth: false
         },
         component: () => import('@/pages/vueUse.vue')
-    }, {
+    }, 
+    {
+        path: '/md5',
+        name: 'md5',
+        meta: {
+            title: 'vueUse',
+            keepAlive: true,
+            requireAuth: false
+        },
+        component: () => import('@/pages/md5.vue')
+    },
+    {
         path: '/login',
         name: 'Login',
         meta: {

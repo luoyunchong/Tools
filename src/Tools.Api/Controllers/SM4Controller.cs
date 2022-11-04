@@ -1,12 +1,12 @@
-using Microsoft.AspNetCore.Mvc;
-using Org.BouncyCastle.Utilities.Encoders;
 using System.Text;
 using DSSM;
+using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Utilities.Encoders;
 
 namespace Tools.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class SM4Controller : ControllerBase
 {
     private readonly ILogger<SM4Controller> _logger;

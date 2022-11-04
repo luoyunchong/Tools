@@ -5,7 +5,7 @@ using System.Web;
 namespace Tools.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class DESController : ControllerBase
 {
     private readonly ILogger<DESController> _logger;
