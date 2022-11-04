@@ -1,6 +1,4 @@
-﻿using Org.BouncyCastle.Utilities;
-using System;
-using System.Collections;
+﻿using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -62,7 +60,7 @@ namespace Tools
             }
             return pwd;
         }
-       
+
         public static string Md5ToBase64(string s, MD5Digit mD5Digit = MD5Digit.Digit32)
         {
             using (MD5 md = new MD5CryptoServiceProvider())
