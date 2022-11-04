@@ -5,6 +5,8 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+RUN apt-get update -y && apt-get install -y libfontconfig1
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/Tools.Api/Tools.Api.csproj", "src/Tools.Api/"]
