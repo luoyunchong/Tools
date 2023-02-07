@@ -1,38 +1,42 @@
  
 <template>
   <div class="root">
-    <h1>index</h1>
-    <ul>
-      <li>
-        <router-link to="login">login</router-link>
-      </li>
-      <li>
-        <router-link to="vueUse">vueUse</router-link>
-      </li>
-      <li>
-        <router-link to="request">request</router-link>
-      </li>
-    </ul>
+    <n-card title="字符串转换">
+      <n-input v-model:value="value" type="textarea" placeholder="请输入要转换的字符串" />
+
+      <n-button type="primary" @click="md5">
+        MD5
+      </n-button>
+      <n-input v-model:value="value2" type="text" placeholder="转换结果" />
+      <n-input v-model:value="value3" type="text" placeholder="转换结果" />
+      <n-input v-model:value="value4" type="text" placeholder="转换结果" />
+      <n-input v-model:value="value5" type="text" placeholder="转换结果" />
+    </n-card>
   </div>
-  <el-row class="mb-4">
-    <el-button>Default</el-button>
-    <el-button type="primary">Primary</el-button>
-    <el-button type="success">Success</el-button>
-    <el-button type="info">Info</el-button>
-    <el-button type="warning">Warning</el-button>
-    <el-button type="danger">Danger</el-button>
-  </el-row>
 </template>
 
  
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import API from '@/api';
 
-export default defineComponent({
-  name: "Index",
-   setup() {
-  },
-});
+const value = ref('12');
+const value2 = ref('');
+const value3 = ref('');
+const value4 = ref('');
+const value5 = ref('');
+  
+const md5 = async () => {
+  let result = await API.allmd5(value.value);
+  console.log(result);
+
+  value2.value = result.Md5Digit32
+  value3.value = result.Md5Digit16
+  value4.value = result.Md5Digit32Lower
+  value5.value = result.Md5Digit16Lower
+};
+
+
+
 </script>
 
 <style lang="scss">

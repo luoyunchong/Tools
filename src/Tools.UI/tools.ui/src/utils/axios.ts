@@ -1,6 +1,8 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
-const service = axios.create();
+const service = axios.create({
+  baseURL:'https://localhost:7295'
+});
 
 // Request interceptors
 service.interceptors.request.use(
@@ -17,6 +19,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     async (response: AxiosResponse) => {
         // do something
+        return Promise.resolve(response.data);
     },
     (error: any) => {
         // do something

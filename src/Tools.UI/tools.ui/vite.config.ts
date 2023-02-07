@@ -1,28 +1,50 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import * as path from 'path';
-import {
-    createStyleImportPlugin,
-    ElementPlusResolve,
-} from 'vite-plugin-style-import';
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
         vue(),
-        createStyleImportPlugin({
-            resolves: [ElementPlusResolve()],
-            libs: [
-                {
-                    libraryName: 'element-plus',
-                    esModule: true,
-                    resolveStyle: (name: string) => {
-                        name = name.substring(3, name.length);
-                        return `element-plus/es/components/${name}/style/index`;
-                    },
-                },
-            ],
+        AutoImport({
+          include: [
+            /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+            /\.vue$/,
+            /\.vue\?vue/ // .vue
+          ],
+          dts: 'typings/auto-imports.d.ts',
+          imports: [
+            'vue',
+            'vue-router', 
+            'pinia',
+            {
+              '@vueuse/core': [
+                // named imports
+                'useMouse', // import { useMouse } from '@vueuse/core',
+                // alias
+                ['useFetch', 'useMyFetch'], // import { useFetch as useMyFetch } from '@vueuse/core',
+              ],
+              'axios': [
+                // default imports
+                ['default', 'axios'], // import { default as axios } from 'axios',
+              ],
+            },
+            {
+              'naive-ui': [
+                'useDialog',
+                'useMessage',
+                'useNotification',
+                'useLoadingBar'
+              ]
+            }
+          ]
         }),
+        Components({
+          resolvers: [NaiveUiResolver()]
+        })
     ],
     resolve: {
         alias: {

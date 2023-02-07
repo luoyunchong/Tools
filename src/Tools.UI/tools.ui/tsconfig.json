@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "types": ["element-plus/global"],
+    "forceConsistentCasingInFileNames": true,
+    "types": [],
     "typeRoots": [
       "node_modules/@types", // 默认值
       "src/types"
@@ -21,5 +22,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue","typings/*.d.ts"]
 }
