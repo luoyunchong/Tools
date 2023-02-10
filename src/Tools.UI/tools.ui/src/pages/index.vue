@@ -16,12 +16,12 @@
             </n-gi>
             <n-gi>
               <n-card>
-                <router-link :to="'/md5'">MD5</router-link>
+                <router-link :to="'/sm4'">国密SM4</router-link>
               </n-card>
             </n-gi>
             <n-gi>
               <n-card>
-                <router-link :to="'/md5'">MD5</router-link>
+                <router-link :to="'/sm3'">SM3</router-link>
               </n-card>
             </n-gi>
           </n-grid>

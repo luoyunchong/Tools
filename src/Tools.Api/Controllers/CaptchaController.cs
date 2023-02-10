@@ -1,5 +1,5 @@
-﻿using System.Text;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Text;
 using Tools.Api.Utils;
 
 namespace Tools.Api.Controllers;

@@ -18,7 +18,7 @@
               <n-button @click="exchange">
                 交换
               </n-button>
-              <n-checkbox v-model:checked="data.ischeck">URL编码</n-checkbox>
+              <n-checkbox v-model:checked="data.ischeck" style="line-height:34px;">URL编码</n-checkbox>
             </n-space>
           </n-list-item>
           <n-list-item>

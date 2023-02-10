@@ -4,20 +4,8 @@ using System.Security.Cryptography;
 using System.Text;
 namespace Tools
 {
-    public enum MD5Digit
-    {
-        /// <summary>
-        /// 16位MD5
-        /// </summary>
-        Digit16 = 16,
-        /// <summary>
-        /// 32位MD5
-        /// </summary>
-        Digit32 = 32
-    }
     public class MD5Util
     {
-
         /// <summary>
         /// 结果和FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5")的实现相同
         /// </summary>
@@ -75,6 +63,27 @@ namespace Tools
                     return Convert.ToBase64String(ss.ToArray(), 4, 8, Base64FormattingOptions.None).ToUpper();
                 }
             }
+        }
+
+        public static string Md5(MD5Input input)
+        {
+            string md5 = "";
+
+            if (input.Base64 == true)
+            {
+                md5 = MD5Util.Md5ToBase64(input.SourceString, input.Digit);
+            }
+            else
+            {
+                MD5Util.Md5(input.SourceString, input.Digit);
+            }
+
+            //不是大写、是小 写
+            if (input.Capital == false)
+            {
+                md5 = md5.ToLower();
+            }
+            return md5;
         }
     }
 }

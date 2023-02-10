@@ -1,7 +1,9 @@
-using System.Text;
 using DSSM;
 using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Utilities.Encoders;
+using System.Text;
+using Tools.Api.DTO;
 
 namespace Tools.Api.Controllers;
 
@@ -17,61 +19,46 @@ public class SM4Controller : ControllerBase
     }
 
     /// <summary>
-    ///加密后的密文(hex): 11d9b2e155ae15a9525455ba0a7ceed0 
-    ///加密后的密文(base64) : Edmy4VWuFalSVFW6Cnzu0A== 
-    /// </summary>
-    [HttpGet("ECB")]
-    public IActionResult ECB()
-    {
-        //秘钥
-        SM4Crypto entity = new SM4Crypto();
-        // entity.Iv = "!9^3mrLy8i^^eX2w";
-        entity.Key = "sW93ZE8rjDeD3!1m";
-        entity.Data = "tuserid002";//"{\"type\":\"identity\",\"identity\":\"11111\",\"timestamp\":\"2021-11-11 11:11:11\"}";
-        entity.HexString = false;
-        string hex = SM4Crypto.EncryptECB(entity);
-        _logger.LogInformation("加密后的密文(hex): {0}", hex);
-        string base64 = SM4Crypto.EncryptECBToBase64(entity);
-        _logger.LogInformation("加密后的密文(base64): {0}", base64);
-        //11d9b2e155ae15a9525455ba0a7ceed0
-        _logger.LogInformation(base64);
-
-        return Ok(new
-        {
-            data = entity.Data,
-            hex,
-            base64
-        });
-    }
-
-
-    /// <summary>
-    ///加密后的密文(hex): 11D9B2E155AE15A9525455BA0A7CEED0 
+    ///加密后的密文(16进制hex): 11D9B2E155AE15A9525455BA0A7CEED0 
     ///加密后的密文(hex): 11D9B2E155AE15A9525455BA0A7CEED0 
     ///加密后的密文(base64): Edmy4VWuFalSVFW6Cnzu0A== 
     ///解密: tuserid002
+    ///密钥 sW93ZE8rjDeD3!1m
     /// </summary>
-    /// <param name="data">要加密的文本：tuserid002</param>
-    [HttpGet("ECB_Padding")]
-    public IActionResult ECB_Padding(string data)
+    /// <param name="input">要加密的文本：tuserid002</param>
+    [HttpPost("ECB_Padding")]
+    public IActionResult ECB_Padding([FromBody] SM4ECBInput input)
     {
-        byte[] plaintext = Encoding.UTF8.GetBytes(data);
-        byte[] keyBytes = Encoding.UTF8.GetBytes("sW93ZE8rjDeD3!1m");
+        byte[] keyBytes = Encoding.UTF8.GetBytes(input.Keys);
 
-        byte[] cipher = SM4Util.Encrypt_ECB_Padding(keyBytes, plaintext);
-        _logger.LogInformation("加密后的密文(hex): {0}", Hex.ToHexString(cipher).ToUpper());
-        _logger.LogInformation("加密后的密文(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
-        _logger.LogInformation("加密后的密文(base64): {0}", Convert.ToBase64String(cipher));
-
-        byte[] decryptedData = SM4Util.Decrypt_ECB_Padding(keyBytes, cipher);
-        _logger.LogInformation("解密: {0}", Encoding.UTF8.GetString(decryptedData));
-
-        return Ok(new
+        if (input.EnOrDecrpyt)
         {
-            data,
-            hex = Hex.ToHexString(cipher).ToUpper(),
-            base64 = Convert.ToBase64String(cipher),
-        });
+            byte[] plaintext = Encoding.UTF8.GetBytes(input.Data);
+
+            byte[] cipher = SM4Util.Encrypt_ECB_Padding(keyBytes, plaintext);
+            _logger.LogInformation("加密后的密文(hex): {0}", Hex.ToHexString(cipher).ToUpper());
+            _logger.LogInformation("加密后的密文(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
+            _logger.LogInformation("加密后的密文(base64): {0}", Convert.ToBase64String(cipher));
+            return Ok(new
+            {
+                sm4Hex = Hex.ToHexString(cipher).ToUpper(),
+                sm4Base64 = Convert.ToBase64String(cipher),
+                text = input.Data
+            }); 
+        }
+        else
+        {
+            byte[] cipher = Encoding.UTF8.GetBytes(input.Data);
+
+            byte[] decryptedData = SM4Util.Decrypt_ECB_Padding(key: keyBytes, cipher);
+            _logger.LogInformation("解密: {0}", Encoding.UTF8.GetString(decryptedData));
+            return Ok(new
+            {
+                sm4Hex = "",
+                sm4Base64 = "",
+                text = Encoding.UTF8.GetString(cipher),
+            });
+        }
     }
 
     /// <summary>
@@ -134,6 +121,33 @@ public class SM4Controller : ControllerBase
             data,
             hex = Hex.ToHexString(cipher).ToUpper(),
             base64 = Convert.ToBase64String(cipher),
+        });
+    }
+    /// <summary>
+    ///加密后的密文(hex): 11d9b2e155ae15a9525455ba0a7ceed0 
+    ///加密后的密文(base64) : Edmy4VWuFalSVFW6Cnzu0A== 
+    /// </summary>
+    [HttpGet("ECBTEST")]
+    public IActionResult ECBTEST()
+    {
+        //秘钥
+        SM4Crypto entity = new SM4Crypto();
+        // entity.Iv = "!9^3mrLy8i^^eX2w";
+        entity.Key = "sW93ZE8rjDeD3!1m";
+        entity.Data = "tuserid002";//"{\"type\":\"identity\",\"identity\":\"11111\",\"timestamp\":\"2021-11-11 11:11:11\"}";
+        entity.HexString = false;
+        string hex = SM4Crypto.EncryptECB(entity);
+        _logger.LogInformation("加密后的密文(hex): {0}", hex);
+        string base64 = SM4Crypto.EncryptECBToBase64(entity);
+        _logger.LogInformation("加密后的密文(base64): {0}", base64);
+        //11d9b2e155ae15a9525455ba0a7ceed0
+        _logger.LogInformation(base64);
+
+        return Ok(new
+        {
+            data = entity.Data,
+            hex,
+            base64
         });
     }
 

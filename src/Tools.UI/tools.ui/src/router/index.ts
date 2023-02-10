@@ -22,14 +22,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/pages/md5.vue"),
   },
   {
-    path: "/login",
-    name: "Login",
+    path: "/sm4",
+    name: "SM4",
     meta: {
-      title: "登录",
+      title: "国密SM4",
       keepAlive: true,
       requireAuth: false,
     },
-    component: () => import("@/pages/login.vue"),
+    component: () => import("@/pages/sm4.vue"),
   },
   {
     path: "/",
