@@ -26,32 +26,32 @@ public class DESController : ControllerBase
         string password = "12345678";
         //string sourceString = "{'idcard':'330781198509077211','date':'2021-11-11 19:04'}";
         string sourceString = JsonConvert.SerializeObject(inputUser);
-        _logger.LogInformation("Ô´×Ö·û´®£º" + sourceString);
+        _logger.LogInformation("æºå­—ç¬¦ä¸²ï¼š" + sourceString);
 
         var c = DESUtil.Encrypt(sourceString, password);
-        //¼ÓÃÜ£º3tL0BBKZyUpIfO+XJKL1VoeQhEWc0enGG8R//RPBJQCiykspXEBmvabp8yrWTBv+QUL62K7dUL+vbpYV/PwZvw==
-        _logger.LogInformation("¼ÓÃÜ£º" + c);
+        //åŠ å¯†ï¼š3tL0BBKZyUpIfO+XJKL1VoeQhEWc0enGG8R//RPBJQCiykspXEBmvabp8yrWTBv+QUL62K7dUL+vbpYV/PwZvw==
+        _logger.LogInformation("åŠ å¯†ï¼š" + c);
 
         c = HttpUtility.UrlEncode(c);
-        _logger.LogInformation("url±àÂë£º" + c);
+        _logger.LogInformation("urlç¼–ç ï¼š" + c);
 
         _logger.LogInformation("================");
 
         c = HttpUtility.UrlDecode(c);
-        _logger.LogInformation("url½âÂë£º" + c);
+        _logger.LogInformation("urlè§£ç ï¼š" + c);
         try
         {
             c = DESUtil.Decrypt(c, password);
-            _logger.LogInformation("url½âÃÜ£º" + c);
+            _logger.LogInformation("urlè§£å¯†ï¼š" + c);
 
             var user = JsonConvert.DeserializeObject<User>(c);
-            _logger.LogInformation("·´ĞòÁĞ»¯\nÈÕÆÚ£º" + user.date);
-            _logger.LogInformation("Éí·İÖ¤ºÅ£º" + user.idcard);
+            _logger.LogInformation("ååºåˆ—åŒ–\næ—¥æœŸï¼š" + user.date);
+            _logger.LogInformation("èº«ä»½è¯å·ï¼š" + user.idcard);
             return user;
         }
         catch (Exception e)
         {
-            _logger.LogInformation("ÎŞ·¨½âÃÜ£º" + e.StackTrace + e.Message);
+            _logger.LogInformation("æ— æ³•è§£å¯†ï¼š" + e.StackTrace + e.Message);
         }
 
         _logger.LogInformation("------over--------");

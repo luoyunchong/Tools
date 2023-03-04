@@ -19,13 +19,13 @@ public class SM4Controller : ControllerBase
     }
 
     /// <summary>
-    ///¼ÓÃÜºóµÄÃÜÎÄ(16½øÖÆhex): 11D9B2E155AE15A9525455BA0A7CEED0 
-    ///¼ÓÃÜºóµÄÃÜÎÄ(hex): 11D9B2E155AE15A9525455BA0A7CEED0 
-    ///¼ÓÃÜºóµÄÃÜÎÄ(base64): Edmy4VWuFalSVFW6Cnzu0A== 
-    ///½âÃÜ: tuserid002
-    ///ÃÜÔ¿ sW93ZE8rjDeD3!1m
+    ///åŠ å¯†åçš„å¯†æ–‡(16è¿›åˆ¶hex): 11D9B2E155AE15A9525455BA0A7CEED0 
+    ///åŠ å¯†åçš„å¯†æ–‡(hex): 11D9B2E155AE15A9525455BA0A7CEED0 
+    ///åŠ å¯†åçš„å¯†æ–‡(base64): Edmy4VWuFalSVFW6Cnzu0A== 
+    ///è§£å¯†: tuserid002
+    ///å¯†é’¥ sW93ZE8rjDeD3!1m
     /// </summary>
-    /// <param name="input">Òª¼ÓÃÜµÄÎÄ±¾£ºtuserid002</param>
+    /// <param name="input">è¦åŠ å¯†çš„æ–‡æœ¬ï¼štuserid002</param>
     [HttpPost("ECB_Padding")]
     public IActionResult ECB_Padding([FromBody] SM4ECBInput input)
     {
@@ -36,22 +36,22 @@ public class SM4Controller : ControllerBase
             byte[] plaintext = Encoding.UTF8.GetBytes(input.Data);
 
             byte[] cipher = SM4Util.Encrypt_ECB_Padding(keyBytes, plaintext);
-            _logger.LogInformation("¼ÓÃÜºóµÄÃÜÎÄ(hex): {0}", Hex.ToHexString(cipher).ToUpper());
-            _logger.LogInformation("¼ÓÃÜºóµÄÃÜÎÄ(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
-            _logger.LogInformation("¼ÓÃÜºóµÄÃÜÎÄ(base64): {0}", Convert.ToBase64String(cipher));
+            _logger.LogInformation("åŠ å¯†åçš„å¯†æ–‡(hex): {0}", Hex.ToHexString(cipher).ToUpper());
+            _logger.LogInformation("åŠ å¯†åçš„å¯†æ–‡(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
+            _logger.LogInformation("åŠ å¯†åçš„å¯†æ–‡(base64): {0}", Convert.ToBase64String(cipher));
             return Ok(new
             {
                 sm4Hex = Hex.ToHexString(cipher).ToUpper(),
                 sm4Base64 = Convert.ToBase64String(cipher),
                 text = input.Data
-            }); 
+            });
         }
         else
         {
             byte[] cipher = Encoding.UTF8.GetBytes(input.Data);
 
             byte[] decryptedData = SM4Util.Decrypt_ECB_Padding(key: keyBytes, cipher);
-            _logger.LogInformation("½âÃÜ: {0}", Encoding.UTF8.GetString(decryptedData));
+            _logger.LogInformation("è§£å¯†: {0}", Encoding.UTF8.GetString(decryptedData));
             return Ok(new
             {
                 sm4Hex = "",
@@ -68,18 +68,18 @@ public class SM4Controller : ControllerBase
     [HttpGet("ECB_NoPadding")]
     public IActionResult ECB_NoPadding(string data)
     {
-        byte[] plaintext = Hex.Decode(data);// ĞèÂú×ã (pSourceLen % 16 == 0)
-        byte[] keyBytes = Hex.Decode("0123456789abcdeffedcba9876543210");//³¤¶È£º 16B
+        byte[] plaintext = Hex.Decode(data);// éœ€æ»¡è¶³ (pSourceLen % 16 == 0)
+        byte[] keyBytes = Hex.Decode("0123456789abcdeffedcba9876543210");//é•¿åº¦ï¼š 16B
 
         byte[] cipher = SM4Util.Encrypt_ECB_NoPadding(keyBytes, plaintext);
-        _logger.LogInformation("¼ÓÃÜºóµÄÃÜÎÄ(hex): {0}", Hex.ToHexString(cipher).ToUpper());
-        _logger.LogInformation("¼ÓÃÜºóµÄÃÜÎÄ(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
-        _logger.LogInformation("¼ÓÃÜºóµÄÃÜÎÄ(base64): {0}", Convert.ToBase64String(cipher));
+        _logger.LogInformation("åŠ å¯†åçš„å¯†æ–‡(hex): {0}", Hex.ToHexString(cipher).ToUpper());
+        _logger.LogInformation("åŠ å¯†åçš„å¯†æ–‡(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
+        _logger.LogInformation("åŠ å¯†åçš„å¯†æ–‡(base64): {0}", Convert.ToBase64String(cipher));
 
         byte[] decryptedData = SM4Util.Decrypt_ECB_NoPadding(keyBytes, cipher);
-        _logger.LogInformation("½âÃÜ: {0}", Hex.ToHexString(decryptedData));
-        //Èç¹û×Ô¶¯»á²¹×Ö½ÚÊı
-        //output.WriteLine("½âÃÜ: {0}", Encoding.UTF8.GetString(decryptedData));
+        _logger.LogInformation("è§£å¯†: {0}", Hex.ToHexString(decryptedData));
+        //å¦‚æœè‡ªåŠ¨ä¼šè¡¥å­—èŠ‚æ•°
+        //output.WriteLine("è§£å¯†: {0}", Encoding.UTF8.GetString(decryptedData));
 
         return Ok(new
         {
@@ -91,17 +91,17 @@ public class SM4Controller : ControllerBase
 
     /// <summary>
     /// data:0123456789abcdeffedcba9876543210
-    ///¼ÓÃÜºóµÄÃÜÎÄ(hex): 89FD03EB48C8FCBCE723AD7E5E585515
-    ///¼ÓÃÜºóµÄÃÜÎÄ(hex): 89FD03EB48C8FCBCE723AD7E5E585515
-    ///¼ÓÃÜºóµÄÃÜÎÄ(base64): if0D60jI/LznI61+XlhVFQ==
-    ///½âÃÜ: 0123456789abcdeffedcba9876543210
+    ///åŠ å¯†åçš„å¯†æ–‡(hex): 89FD03EB48C8FCBCE723AD7E5E585515
+    ///åŠ å¯†åçš„å¯†æ–‡(hex): 89FD03EB48C8FCBCE723AD7E5E585515
+    ///åŠ å¯†åçš„å¯†æ–‡(base64): if0D60jI/LznI61+XlhVFQ==
+    ///è§£å¯†: 0123456789abcdeffedcba9876543210
     /// </summary>
     [HttpGet("SMSUtil_CBC_NoPadding")]
     public IActionResult SMSUtil_CBC_NoPadding(string data)
     {
-        byte[] plaintext = Hex.Decode(data);// ĞèÂú×ã (pSourceLen % 16 == 0)
-        byte[] keyBytes = Hex.Decode("0123456789abcdeffedcba9876543210");//³¤¶È£º 16B
-        byte[] iv = Encoding.UTF8.GetBytes("!9^3mrLy8i^^eX2w");//³¤¶È£º 16B
+        byte[] plaintext = Hex.Decode(data);// éœ€æ»¡è¶³ (pSourceLen % 16 == 0)
+        byte[] keyBytes = Hex.Decode("0123456789abcdeffedcba9876543210");//é•¿åº¦ï¼š 16B
+        byte[] iv = Encoding.UTF8.GetBytes("!9^3mrLy8i^^eX2w");//é•¿åº¦ï¼š 16B
                                                                //byte[] plaintext = Encoding.UTF8.GetBytes("tuserid002");
                                                                //byte[] keyBytes = Encoding.UTF8.GetBytes("sW93ZE8rjDeD3!1m");
 
@@ -109,12 +109,12 @@ public class SM4Controller : ControllerBase
         //byte[] iv = SM4Util.GenerateKey(16);
 
         byte[] cipher = SM4Util.Encrypt_CBC_NoPadding(keyBytes, iv, plaintext);
-        _logger.LogInformation("¼ÓÃÜºóµÄÃÜÎÄ(hex): {0}", Hex.ToHexString(cipher).ToUpper());
-        _logger.LogInformation("¼ÓÃÜºóµÄÃÜÎÄ(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
-        _logger.LogInformation("¼ÓÃÜºóµÄÃÜÎÄ(base64): {0}", Convert.ToBase64String(cipher));
+        _logger.LogInformation("åŠ å¯†åçš„å¯†æ–‡(hex): {0}", Hex.ToHexString(cipher).ToUpper());
+        _logger.LogInformation("åŠ å¯†åçš„å¯†æ–‡(hex): {0}", BitConverter.ToString(cipher, 0).Replace("-", string.Empty));
+        _logger.LogInformation("åŠ å¯†åçš„å¯†æ–‡(base64): {0}", Convert.ToBase64String(cipher));
 
         byte[] decryptedData = SM4Util.Decrypt_CBC_NoPadding(keyBytes, iv, cipher);
-        _logger.LogInformation("½âÃÜ: {0}", Hex.ToHexString(decryptedData));
+        _logger.LogInformation("è§£å¯†: {0}", Hex.ToHexString(decryptedData));
 
         return Ok(new
         {
@@ -124,22 +124,22 @@ public class SM4Controller : ControllerBase
         });
     }
     /// <summary>
-    ///¼ÓÃÜºóµÄÃÜÎÄ(hex): 11d9b2e155ae15a9525455ba0a7ceed0 
-    ///¼ÓÃÜºóµÄÃÜÎÄ(base64) : Edmy4VWuFalSVFW6Cnzu0A== 
+    ///åŠ å¯†åçš„å¯†æ–‡(hex): 11d9b2e155ae15a9525455ba0a7ceed0 
+    ///åŠ å¯†åçš„å¯†æ–‡(base64) : Edmy4VWuFalSVFW6Cnzu0A== 
     /// </summary>
     [HttpGet("ECBTEST")]
     public IActionResult ECBTEST()
     {
-        //ÃØÔ¿
+        //ç§˜é’¥
         SM4Crypto entity = new SM4Crypto();
         // entity.Iv = "!9^3mrLy8i^^eX2w";
         entity.Key = "sW93ZE8rjDeD3!1m";
         entity.Data = "tuserid002";//"{\"type\":\"identity\",\"identity\":\"11111\",\"timestamp\":\"2021-11-11 11:11:11\"}";
         entity.HexString = false;
         string hex = SM4Crypto.EncryptECB(entity);
-        _logger.LogInformation("¼ÓÃÜºóµÄÃÜÎÄ(hex): {0}", hex);
+        _logger.LogInformation("åŠ å¯†åçš„å¯†æ–‡(hex): {0}", hex);
         string base64 = SM4Crypto.EncryptECBToBase64(entity);
-        _logger.LogInformation("¼ÓÃÜºóµÄÃÜÎÄ(base64): {0}", base64);
+        _logger.LogInformation("åŠ å¯†åçš„å¯†æ–‡(base64): {0}", base64);
         //11d9b2e155ae15a9525455ba0a7ceed0
         _logger.LogInformation(base64);
 

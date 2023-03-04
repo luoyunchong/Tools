@@ -17,7 +17,7 @@ public class SM3Controller : ControllerBase
     }
 
     /// <summary>
-    /// ¹úÃÜSM3
+    /// SM3Digest
     /// </summary>
     /// <returns></returns>
     [HttpGet("SM3Digest")]

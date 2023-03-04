@@ -17,12 +17,12 @@ public class SM2Controller : ControllerBase
     }
 
     /// <summary>
-    /// Ç©Ãû£¬¹úÃÜSM2
+    /// ç­¾åï¼Œå›½å¯†SM2
     /// </summary>
-    /// <param name="body">²ÎÊıÄÚÈİ</param>
-    /// <param name="privateKey">Ë½Ô¿</param>
-    /// <param name="sign">Ç©ÃûÖµ</param>
-    /// <param name="timestamp">Ê±¼ä´Á</param>
+    /// <param name="body">å‚æ•°å†…å®¹</param>
+    /// <param name="privateKey">ç§é’¥</param>
+    /// <param name="sign">ç­¾åå€¼</param>
+    /// <param name="timestamp">æ—¶é—´æˆ³</param>
     private string Sign(string body, string privateKey, out string timestamp)
     {
         if (body.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(body));
@@ -30,18 +30,18 @@ public class SM2Controller : ControllerBase
 
         timestamp = "";
 
-        // ¼ÓÃÜËã·¨²ÉÓÃSM2¼ÓÃÜËã·¨
+        // åŠ å¯†ç®—æ³•é‡‡ç”¨SM2åŠ å¯†ç®—æ³•
         string sign = Hex.ToHexString(SMCrypto.Sign(Encoding.UTF8.GetBytes(body), SMCrypto.Decode(privateKey), Encoding.UTF8.GetBytes(timestamp)));
         return sign;
     }
     /// <summary>
-    /// ÑéÇ©£¬¹úÃÜSM2
+    /// éªŒç­¾ï¼Œå›½å¯†SM2
     /// </summary>
-    /// <param name="body">²ÎÊıÄÚÈİ</param>
-    /// <param name="publicKey">¹«Ô¼</param>
-    /// <param name="sign">Ç©ÃûÖµ</param>
-    /// <param name="timestamp">Ê±¼ä´Á</param>
-    /// <returns>³É¹¦Óë·ñ</returns>
+    /// <param name="body">å‚æ•°å†…å®¹</param>
+    /// <param name="publicKey">å…¬çº¦</param>
+    /// <param name="sign">ç­¾åå€¼</param>
+    /// <param name="timestamp">æ—¶é—´æˆ³</param>
+    /// <returns>æˆåŠŸä¸å¦</returns>
     private bool VerifySign(string body, string publicKey, string sign, string timestamp)
     {
         if (body.IsNullOrWhiteSpace()) throw new ArgumentNullException(nameof(body));
@@ -53,7 +53,7 @@ public class SM2Controller : ControllerBase
             Encoding.UTF8.GetBytes(timestamp));
     }
     /// <summary>
-    /// ¹úÃÜSM2
+    /// å›½å¯†SM2
     /// </summary>
     /// <returns></returns>
     [HttpGet("SM2Digest")]
