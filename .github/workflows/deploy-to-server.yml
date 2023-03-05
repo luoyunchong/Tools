@@ -33,8 +33,10 @@ jobs:
           cache: pnpm
           cache-dependency-path: src/Tools.UI/tools.ui/pnpm-lock.yaml
           
-      - run: cd src/Tools.UI/tools.ui&pnpm install --frozen-lockfile
-      - run: cd src/Tools.UI/tools.ui& pnpm run build
+      - run: |
+          cd src/Tools.UI/tools.ui
+          pnpm install --frozen-lockfile
+          pnpm run build
 
       # https://github.com/marketplace/actions/ssh-deploy
       - name: Deploy to Server
