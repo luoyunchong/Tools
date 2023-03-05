@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 const service = axios.create({
-  baseURL:'https://localhost:7295'
+  baseURL: import.meta.env.VITE_APP_URL,
 });
 
 // Request interceptors

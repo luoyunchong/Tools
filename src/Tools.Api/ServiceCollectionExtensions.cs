@@ -1,4 +1,5 @@
 ﻿using IGeekFan.FreeKit.Extras.CaseQuery;
+using IGeekFan.FreeKit.Infrastructure.Filters;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -19,6 +20,8 @@ namespace Tools.Api
 
             services.AddControllers(options =>
             {
+                options.ValueProviderFactories.Add(new CamelCaseValueProviderFactory());
+                options.Filters.Add(typeof(HttpGlobalExceptionFilter));
             })
             .AddNewtonsoftJson(opt =>
             {
@@ -26,7 +29,6 @@ namespace Tools.Api
             })
             //.AddJsonOptions(options => options.JsonSerializerOptions.WriteIndented = true)
             ;
-
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
