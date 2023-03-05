@@ -19,11 +19,7 @@ jobs:
           fetch-depth: 0
           # if your docs needs submodules, uncomment the following line
           # submodules: true
-
           
-      - name: cd
-        run: cd src/Tools.UI/tools.ui
-        
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
@@ -36,6 +32,8 @@ jobs:
           node-version: 16
           cache: pnpm
           cache-dependency-path: src/Tools.UI/tools.ui/pnpm-lock.yaml
+          
+      - run: cd src/Tools.UI/tools.ui
       - run: pnpm install --frozen-lockfile
       - run:  pnpm run build
 
