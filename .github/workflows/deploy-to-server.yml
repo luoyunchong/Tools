@@ -36,15 +36,8 @@ jobs:
           node-version: 16
           cache: pnpm
           cache-dependency-path: src/Tools.UI/tools.ui/pnpm-lock.yaml
-
-        
-      - name: Install Deps
-        run: pnpm install --frozen-lockfile
-
-      - name: Build Docs
-        env:
-          NODE_OPTIONS: --max_old_space_size=4096
-        run: pnpm run build
+      - run: pnpm install --frozen-lockfile
+      - run:  pnpm run build
 
       # https://github.com/marketplace/actions/ssh-deploy
       - name: Deploy to Server
@@ -52,7 +45,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           ARGS: "--delete"
-          SOURCE: "dist/"
+          SOURCE: "src/Tools.UI/tools.ui/dist/"
           REMOTE_HOST: ${{ secrets.HOST }}
           REMOTE_USER: ${{ secrets.USER }}
           TARGET: ${{ secrets.REMOTE_TARGET }}
