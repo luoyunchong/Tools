@@ -35,6 +35,7 @@ jobs:
         with:
           node-version: 16
           cache: pnpm
+          cache-dependency-path: src/Tools.UI/tools.ui/pnpm-lock.yaml
 
         
       - name: Install Deps
