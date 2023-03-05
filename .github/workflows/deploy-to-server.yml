@@ -20,22 +20,22 @@ jobs:
           # if your docs needs submodules, uncomment the following line
           # submodules: true
 
-
+          
+      - name: cd
+        run: cd src/Tools.UI/tools.ui
+        
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 7
           run_install: true
 
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: pnpm
-          
-      - name: cd
-        run: cd src/Tools.UI/tools.ui
+
         
       - name: Install Deps
         run: pnpm install --frozen-lockfile
