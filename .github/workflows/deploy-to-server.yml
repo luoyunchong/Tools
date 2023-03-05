@@ -33,7 +33,10 @@ jobs:
         with:
           node-version: 16
           cache: pnpm
-
+          
+      - name: cd
+        run: cd src/Tools.UI/tools.ui
+        
       - name: Install Deps
         run: pnpm install --frozen-lockfile
 
