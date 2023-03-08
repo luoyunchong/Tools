@@ -3,3 +3,7 @@ interface SM4ECBOutput {
   sm4Base64: string;
   text: string;
 }
+interface DESInput {
+  sourceString: string;
+  password: string;
+}

@@ -76,6 +76,23 @@ const menuOptions = [
         key: 'sm4',
         icon: renderIcon(LogoFirebase),
     },
+        {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            name: 'des',
+            params: {
+              lang: 'zh-CN'
+            }
+          }
+        },
+        { default: () => 'DES' }
+      ),
+    key: 'des',
+    icon: renderIcon(LogoFirebase),
+  },
     {
         label: () =>
             h(

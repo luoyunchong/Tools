@@ -3,7 +3,13 @@ using Newtonsoft.Json;
 using System.Web;
 
 namespace Tools.Api.Controllers;
-
+/// <summary>
+/// DES 加密 输入
+/// </summary>
+/// <param name="SourceString">源加密串</param>
+/// <param name="Password">密钥</param>
+public record DESInput(string SourceString, string Password);
+public record User(string idcard, DateTime date);
 [ApiController]
 [Route("api/[controller]")]
 public class DESController : ControllerBase
@@ -16,11 +22,35 @@ public class DESController : ControllerBase
     }
 
     /// <summary>
+    /// DES 加密
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [HttpPost("encrypt")]
+    public string Encrypt([FromBody] DESInput input)
+    {
+        var r = DESUtil.Encrypt(input.SourceString, input.Password);
+        return r;
+    }
+
+    /// <summary>
+    /// DES 解密
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    [HttpPost("decrypt")]
+    public string Decrypt([FromBody] DESInput input)
+    {
+        var r = DESUtil.Decrypt(input.SourceString, input.Password);
+        return r;
+    }
+
+    /// <summary>
     /// "{'idcard':'330781198509077211','date':'2021-11-11 19:04'}";
     /// </summary>
     /// <param name="inputUser"></param>
     /// <returns></returns>
-    [HttpPost(Name = "Encrypt")]
+    [HttpPost("user")]
     public User? Encrypt([FromBody] User inputUser)
     {
         string password = "12345678";
@@ -60,4 +90,3 @@ public class DESController : ControllerBase
     }
 }
 
-public record User(string idcard, DateTime date);
