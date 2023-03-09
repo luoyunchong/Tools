@@ -40,7 +40,7 @@ const routes: Array<RouteRecordRaw> = [
         path: "/des",
         name: "des",
         meta: {
-          title: "des",
+          title: "DES分组密码（块密码）加密技术",
           keepAlive: true,
           requireAuth: false,
         },
@@ -55,6 +55,16 @@ const routes: Array<RouteRecordRaw> = [
           requireAuth: false,
         },
         component: () => import("@/pages/sm4.vue"),
+      },
+      {
+        path: "/uri",
+        name: "uri",
+        meta: {
+          title: "uri编码",
+          keepAlive: true,
+          requireAuth: false,
+        },
+        component: () => import("@/pages/uri.vue"),
       },
     ],
   },

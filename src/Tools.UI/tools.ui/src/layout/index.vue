@@ -109,7 +109,24 @@ const menuOptions = [
             ),
         key: 'base64',
         icon: renderIcon(BaseballSharp),
-    }
+    },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            name: 'uri',
+            params: {
+              lang: 'zh-CN'
+            }
+          }
+        },
+        { default: () => 'URI' }
+      ),
+    key: 'uri',
+    icon: renderIcon(BaseballSharp),
+  }
 ]
 </script>
 
