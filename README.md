@@ -5,7 +5,7 @@
 - SM4/SM3/SM2国密
 - DES
 - BASE64
-- URL 编码
+- URI 编码
 - JSON格式化
 - 图片验证码(跨平台)
 

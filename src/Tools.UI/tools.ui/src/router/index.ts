@@ -8,7 +8,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "/",
-        name: "Index",
+        name: "index",
         meta: {
           title: "首页",
           keepAlive: true,
@@ -65,6 +65,26 @@ const routes: Array<RouteRecordRaw> = [
           requireAuth: false,
         },
         component: () => import("@/pages/uri.vue"),
+      },
+      {
+        path: "/json",
+        name: "json",
+        meta: {
+          title: "json格式化",
+          keepAlive: true,
+          requireAuth: false,
+        },
+        component: () => import("@/pages/json.vue"),
+      },
+      {
+        path: "/captcha",
+        name: "captcha",
+        meta: {
+          title: "图片验证码",
+          keepAlive: true,
+          requireAuth: false,
+        },
+        component: () => import("@/pages/captcha.vue"),
       },
     ],
   },

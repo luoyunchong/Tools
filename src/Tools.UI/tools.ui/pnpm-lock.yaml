@@ -22,6 +22,7 @@ specifiers:
   vue: ^3.2.47
   vue-router: ^4.1.6
   vue-tsc: ^1.2.0
+  vue3-ts-jsoneditor: ^2.7.1
 
 dependencies:
   '@soybeanjs/vue-admin-layout': 1.1.1_vue@3.2.47
@@ -34,6 +35,7 @@ dependencies:
   pinia: 2.0.32_hmuptsblhheur2tugfgucj7gc4
   vue: 3.2.47
   vue-router: 4.1.6_vue@3.2.47
+  vue3-ts-jsoneditor: 2.7.1
 
 devDependencies:
   '@types/node': 18.14.6
@@ -2242,6 +2244,10 @@ packages:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
 
+  /vanilla-jsoneditor/0.7.11:
+    resolution: {integrity: sha512-DFm6Fg6gzP4FlOaydDCRWpqEsmI5umpb9fOV3hKbbNDO1ZHTUpuMwi1SmMyoEsSgdDGGzRLFNCrW0URQ9Skx4w==}
+    dev: false
+
   /vdirs/0.1.8_vue@3.2.47:
     resolution: {integrity: sha512-H9V1zGRLQZg9b+GdMk8MXDN2Lva0zx72MPahDKc30v+DtwKjfyOSXWRIX4t2mhDubM1H09gPhWeth/BJWPHGUw==}
     peerDependencies:
@@ -2359,6 +2365,13 @@ packages:
       '@vue/runtime-dom': 3.2.47
       '@vue/server-renderer': 3.2.47_vue@3.2.47
       '@vue/shared': 3.2.47
+
+  /vue3-ts-jsoneditor/2.7.1:
+    resolution: {integrity: sha512-u8dWSG21dK0+iwbY6yhpcyRstQEKbO53+4Ma4Qhf9ED/wbGURjLvX/GTMbVsU7xB4gJKEs1a01AxBIgIab+4uA==}
+    dependencies:
+      vanilla-jsoneditor: 0.7.11
+      vue: 3.2.47
+    dev: false
 
   /vueuc/0.4.51_vue@3.2.47:
     resolution: {integrity: sha512-pLiMChM4f+W8czlIClGvGBYo656lc2Y0/mXFSCydcSmnCR1izlKPGMgiYBGjbY9FDkFG8a2HEVz7t0DNzBWbDw==}
