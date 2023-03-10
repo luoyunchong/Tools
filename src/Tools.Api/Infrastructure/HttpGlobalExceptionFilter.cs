@@ -48,7 +48,7 @@ public class HttpGlobalExceptionFilter : IExceptionFilter
                 Messages = new[] { "An error ocurred." }
             };
 
-            if (_env.IsDevelopment() || _env.EnvironmentName == "Nacos" || _env.EnvironmentName == "Nacos.Development")
+            //if (_env.IsDevelopment() || _env.EnvironmentName == "Nacos" || _env.EnvironmentName == "Nacos.Development")
             {
                 json.DeveloperMessage = context.Exception;
             }
