@@ -5,19 +5,13 @@
       <n-list :bordered="false">
         <n-list-item>
           <n-space align="center">
-            高度：
-            <n-input-number v-model:value="data.height" />
-          </n-space>
-        </n-list-item>
-        <n-list-item>
-          <n-space align="center">
             宽度：
             <n-input-number v-model:value="data.width" />
           </n-space>
         </n-list-item>
         <n-list-item>
           <n-space>
-            <img :src="src" :width="data.width" :height="data.height" />
+            <img :src="src" :width="data.width"/>
             <n-button type="primary" ghost @click="generCaptch()"
               >获取验证码</n-button
             >

@@ -14,7 +14,7 @@
       </n-space>
     </div>
     <vue-jsoneditor
-      height="400"
+      height="600"
       :dark-theme="darkTheme"
       :mode="mode"
       v-model:json="jsonData"
