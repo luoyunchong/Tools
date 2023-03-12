@@ -1,6 +1,7 @@
 # Tools
 
 目标：实现在线预览，加密、编码、转换工具，功能如下：
+
 - MD5 信息-摘要算法
 - SM4/SM3/SM2国密
 - DES
@@ -8,14 +9,17 @@
 - URI 编码
 - JSON格式化
 - 图片验证码(跨平台)
+- 时间戳
 
-## 示例 DES+MD5+SM4国密
+## 预览地址
+
+- [https://igeekfan.cn/tools/#/](https://igeekfan.cn/tools/#/)
+
+## 示例 DES
 
 - JAVA+C# 相同的DES 加密/解密
-- 不同的MD5方法
-- SM4国密使用方式
 
-### C# 调用 
+### C# 调用
 
 ```csharp
     string password = "12345678";
@@ -52,7 +56,7 @@
     Console.ReadLine();
 ```
 
-### JAVA调用 
+### JAVA调用
 
 ```java
     String password="12345678";
@@ -70,6 +74,3 @@
     String ert = DESUtil.decrypt(decodeUrl,password);
     System.out.println("url解密："+ert);
 ```
-
-
-
