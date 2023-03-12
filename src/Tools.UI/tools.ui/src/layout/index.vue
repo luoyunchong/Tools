@@ -1,18 +1,35 @@
-
 <template>
-  <admin-layout :fixed-footer="false" :footer-visible="true" :tab-visible="false">
+  <admin-layout
+    :fixed-footer="false"
+    :footer-visible="true"
+    :tab-visible="false"
+  >
     <template #header>
-      <div class="h-full dark:bg-[#18181c] dark:text-white dark:text-opacity-82 transition-all duration-300 ease-in-out"
-        :class="inverted ? 'bg-[#001428] text-white' : 'bg-white text-[#333639]'">
-        <h1 class="pl-8px text-26px font-bold text-primary transition duration-300 ease-in-out ">在线工具</h1>
+      <div
+        class="h-full dark:bg-[#18181c] dark:text-white dark:text-opacity-82 transition-all duration-300 ease-in-out"
+        :class="
+          inverted ? 'bg-[#001428] text-white' : 'bg-white text-[#333639]'
+        "
+      >
+        <h1
+          class="pl-8px text-26px font-bold text-primary transition duration-300 ease-in-out"
+        >
+          在线工具
+        </h1>
       </div>
     </template>
     <!-- <template #tab></template> -->
     <template #sider>
-      <n-menu v-model:value="activeKey" mode="vertical" :options="menuOptions" />
+      <n-menu
+        v-model:value="activeKey"
+        mode="vertical"
+        :options="menuOptions"
+      />
     </template>
-    <div :class="{ 'p-16px': showPadding }"
-      class="h-full bg-[#f6f9f8] dark:bg-[#101014] transition duration-300 ease-in-out">
+    <div
+      :class="{ 'p-16px': showPadding }"
+      class="h-full bg-[#f6f9f8] dark:bg-[#101014] transition duration-300 ease-in-out"
+    >
       <router-view v-slot="{ Component, route }">
         <component :is="Component" :key="route.fullPath" />
       </router-view>
@@ -26,38 +43,43 @@
 </template>
 
 <script setup lang="ts">
-import { NIcon } from 'naive-ui'
-import AdminLayout from '@soybeanjs/vue-admin-layout';
+import { NIcon } from "naive-ui";
+import AdminLayout from "@soybeanjs/vue-admin-layout";
 import {
-  BookOutline  ,
-  BaseballSharp  ,
-  LogoFirebase ,Boat,Bookmarks,BrowsersOutline,BookSharp,CarSport,CheckmarkCircleSharp
-} from '@vicons/ionicons5'
-import { RouterLink } from 'vue-router'
+  BookOutline,
+  BaseballSharp,
+  LogoFirebase,
+  Boat,
+  Bookmarks,
+  BrowsersOutline,
+  BookSharp,
+  CarSport,
+  CheckmarkCircleSharp,
+} from "@vicons/ionicons5";
+import { RouterLink } from "vue-router";
 function renderIcon(icon: Component) {
-  return () => h(NIcon, null, { default: () => h(icon) })
+  return () => h(NIcon, null, { default: () => h(icon) });
 }
 const route = useRoute();
-const activeKey = computed(() => (route.meta?.activeMenu ? route.meta.activeMenu : route.name) as string);
-const showPadding = ref(true)
-const inverted = ref(false)
+const activeKey = computed(
+  () => (route.meta?.activeMenu ? route.meta.activeMenu : route.name) as string
+);
+const showPadding = ref(true);
+const inverted = ref(false);
 const menuOptions = [
-   {
+  {
     label: () =>
       h(
         RouterLink,
         {
           to: {
-            name: 'index',
-            params: {
-              lang: 'zh-CN'
-            }
-          }
+            name: "index",
+          },
         },
-        { default: () => '所有工具' }
+        { default: () => "所有工具" }
       ),
-    key: 'index',
-    icon: renderIcon(BookOutline)
+    key: "index",
+    icon: renderIcon(BookOutline),
   },
   {
     label: () =>
@@ -65,16 +87,13 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            name: 'md5',
-            params: {
-              lang: 'zh-CN'
-            }
-          }
+            name: "md5",
+          },
         },
-        { default: () => 'MD5' }
+        { default: () => "MD5" }
       ),
-    key: 'md5',
-    icon: renderIcon(CarSport)
+    key: "md5",
+    icon: renderIcon(CarSport),
   },
   {
     label: () =>
@@ -82,15 +101,12 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            name: 'sm4',
-            params: {
-              lang: 'zh-CN'
-            }
-          }
+            name: "sm4",
+          },
         },
-        { default: () => 'SM4' }
+        { default: () => "SM4" }
       ),
-    key: 'sm4',
+    key: "sm4",
     icon: renderIcon(CheckmarkCircleSharp),
   },
   {
@@ -99,15 +115,12 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            name: 'des',
-            params: {
-              lang: 'zh-CN'
-            }
-          }
+            name: "des",
+          },
         },
-        { default: () => 'DES' }
+        { default: () => "DES" }
       ),
-    key: 'des',
+    key: "des",
     icon: renderIcon(LogoFirebase),
   },
   {
@@ -116,15 +129,12 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            name: 'base64',
-            params: {
-              lang: 'zh-CN'
-            }
-          }
+            name: "base64",
+          },
         },
-        { default: () => 'BASE64' }
+        { default: () => "BASE64" }
       ),
-    key: 'base64',
+    key: "base64",
     icon: renderIcon(BaseballSharp),
   },
   {
@@ -133,15 +143,12 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            name: 'uri',
-            params: {
-              lang: 'zh-CN'
-            }
-          }
+            name: "uri",
+          },
         },
-        { default: () => 'URI' }
+        { default: () => "URI" }
       ),
-    key: 'uri',
+    key: "uri",
     icon: renderIcon(BaseballSharp),
   },
   {
@@ -150,15 +157,12 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            name: 'json',
-            params: {
-              lang: 'zh-CN'
-            }
-          }
+            name: "json",
+          },
         },
-        { default: () => 'JSON' }
+        { default: () => "JSON" }
       ),
-    key: 'json',
+    key: "json",
     icon: renderIcon(BrowsersOutline),
   },
   {
@@ -167,17 +171,27 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            name: 'captcha',
-            params: {
-              lang: 'zh-CN'
-            }
-          }
+            name: "captcha",
+          },
         },
-        { default: () => '图片验证码' }
+        { default: () => "图片验证码" }
       ),
-    key: 'captcha',
+    key: "captcha",
     icon: renderIcon(BookSharp),
-  }
-]
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            name: "timestamp",
+          },
+        },
+        { default: () => "时间戳转换" }
+      ),
+    key: "timestamp",
+    icon: renderIcon(Boat),
+  },
+];
 </script>
-

@@ -86,6 +86,16 @@ const routes: Array<RouteRecordRaw> = [
         },
         component: () => import("@/pages/captcha.vue"),
       },
+      {
+        path: "/timestamp",
+        name: "timestamp",
+        meta: {
+          title: "时间戳转换",
+          keepAlive: true,
+          requireAuth: false,
+        },
+        component: () => import("@/pages/timestamp.vue"),
+      },
     ],
   },
   {
@@ -101,7 +111,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-    history: createWebHashHistory(),
-    routes,
+  history: createWebHashHistory(),
+  routes,
 });
 export default router;
