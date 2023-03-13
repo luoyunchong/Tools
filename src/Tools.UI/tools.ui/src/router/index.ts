@@ -96,6 +96,16 @@ const routes: Array<RouteRecordRaw> = [
         },
         component: () => import("@/pages/timestamp.vue"),
       },
+      {
+        path: "/markdown",
+        name: "markdown",
+        meta: {
+          title: "Markdown编辑器",
+          keepAlive: true,
+          requireAuth: false,
+        },
+        component: () => import("@/pages/markdown.vue"),
+      },
     ],
   },
   {

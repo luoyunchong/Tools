@@ -1,35 +1,21 @@
 <template>
-  <admin-layout
-    :fixed-footer="false"
-    :footer-visible="true"
-    :tab-visible="false"
-  >
+  <admin-layout :fixed-footer="false" :footer-visible="true" :tab-visible="false">
     <template #header>
-      <div
-        class="h-full dark:bg-[#18181c] dark:text-white dark:text-opacity-82 transition-all duration-300 ease-in-out"
+      <div class="h-full dark:bg-[#18181c] dark:text-white dark:text-opacity-82 transition-all duration-300 ease-in-out"
         :class="
           inverted ? 'bg-[#001428] text-white' : 'bg-white text-[#333639]'
-        "
-      >
-        <h1
-          class="pl-8px text-26px font-bold text-primary transition duration-300 ease-in-out"
-        >
+        ">
+        <h1 class="pl-8px text-26px font-bold text-primary transition duration-300 ease-in-out">
           在线工具
         </h1>
       </div>
     </template>
     <!-- <template #tab></template> -->
     <template #sider>
-      <n-menu
-        v-model:value="activeKey"
-        mode="vertical"
-        :options="menuOptions"
-      />
+      <n-menu v-model:value="activeKey" mode="vertical" :options="menuOptions" />
     </template>
-    <div
-      :class="{ 'p-16px': showPadding }"
-      class="h-full bg-[#f6f9f8] dark:bg-[#101014] transition duration-300 ease-in-out"
-    >
+    <div :class="{ 'p-16px': showPadding }"
+      class="h-full bg-[#f6f9f8] dark:bg-[#101014] transition duration-300 ease-in-out">
       <router-view v-slot="{ Component, route }">
         <component :is="Component" :key="route.fullPath" />
       </router-view>
@@ -192,6 +178,20 @@ const menuOptions = [
       ),
     key: "timestamp",
     icon: renderIcon(Boat),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            name: "markdown",
+          },
+        },
+        { default: () => "MarkDown预览" }
+      ),
+    key: "markdown",
+    icon: renderIcon(Bookmarks),
   },
 ];
 </script>

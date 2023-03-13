@@ -33,5 +33,6 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     UsePinia: typeof import('./src/components/usePinia.vue')['default']
+    VMdPreview: typeof import('./src/components/VMdPreview.vue')['default']
   }
 }
