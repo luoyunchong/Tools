@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Xunit.Abstractions;
 
-namespace SM4_Test
+namespace Tools.xUnit
 {
     public class ToolHelperTest
     {

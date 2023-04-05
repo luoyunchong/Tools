@@ -5,6 +5,7 @@
 - MD5 信息-摘要算法
 - SM4/SM3/SM2国密
 - DES
+- AES
 - BASE64
 - URI 编码
 - JSON格式化

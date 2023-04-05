@@ -86,9 +86,5 @@ url解密：{'idcard':'330781198509077211','date':'2021-11-11 19:04'}
 
     }
 
-    public class User
-    {
-        public string idcard { get; set; }
-        public string date { get; set; }
-    }
+    public record User(string idcard, string date);
 }

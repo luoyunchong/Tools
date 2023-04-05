@@ -10,7 +10,7 @@ using DSSM;
 using Tools;
 using System.Security.Cryptography;
 
-namespace SM4_Test
+namespace Tools.xUnit
 {
     public class SM4Test
     {
@@ -214,12 +214,12 @@ namespace SM4_Test
             output.WriteLine("Ω‚√‹: {0}", Hex.ToHexString(decryptedData));
         }
 
-        public static byte[] ZeroIv(String algo)
+        public static byte[] ZeroIv(string algo)
         {
             IBufferedCipher cipher = CipherUtilities.GetCipher(algo);
             int blockSize = cipher.GetBlockSize();
             byte[] iv = new byte[blockSize];
-            Arrays.Fill(iv, (byte)0);
+            Arrays.Fill(iv, 0);
             return iv;
         }
 

@@ -20,7 +20,7 @@ namespace Tools
         public string FileToHashBase64String(string path, HashAlgorithm hashAlgorithm)
         {
             string hash = GetFileHash(path, hashAlgorithm);
-            byte[] bytes = HexStrTobyte(hash);
+            byte[] bytes = HexStrToByte(hash);
             return Convert.ToBase64String(bytes);
         }
         public string FileToHashBase64String(string path, DIGEST_TYPE DIGEST_TYPE)
@@ -40,7 +40,7 @@ namespace Tools
                 default:
                     throw new Exception("NOT SUPPORT");
             }
-            byte[] bytes = HexStrTobyte(hash);
+            byte[] bytes = HexStrToByte(hash);
             return Convert.ToBase64String(bytes);
         }
         //byte[] data;
@@ -109,7 +109,7 @@ namespace Tools
         /// </summary>
         /// <param name="hexString"></param>
         /// <returns></returns>
-        public byte[] HexStrTobyte(string hexString)
+        public byte[] HexStrToByte(string hexString)
         {
             hexString = hexString.Replace(" ", "");
             if ((hexString.Length % 2) != 0)
@@ -125,7 +125,7 @@ namespace Tools
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public string ByteArrayToHexString(byte[] data)
+        public string ByteToHexString(byte[] data)
         {
             StringBuilder sb = new StringBuilder();
             foreach (byte b in data)
@@ -134,5 +134,29 @@ namespace Tools
             }
             return sb.ToString().ToUpper();
         }
+
+
+        #region Base64位加密解密
+        /// <summary>
+        /// 将字符串转换成base64格式,使用UTF8字符集
+        /// </summary>
+        /// <param name="content">加密内容</param>
+        /// <returns></returns>
+        public static string Base64Encode(string content)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(content);
+            return Convert.ToBase64String(bytes);
+        }
+        /// <summary>
+        /// 将base64格式，转换utf8
+        /// </summary>
+        /// <param name="content">解密内容</param>
+        /// <returns></returns>
+        public static string Base64Decode(string content)
+        {
+            byte[] bytes = Convert.FromBase64String(content);
+            return Encoding.UTF8.GetString(bytes);
+        }
+        #endregion
     }
 }

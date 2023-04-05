@@ -19,7 +19,7 @@ namespace Tools
         /// <param name="Key">密钥</param>
         /// <param name="Iv">初始化向量</param>
         /// <returns></returns>
-        public static string Encrypt(string sourceString, string Key, string Iv = "")
+        public static string Encrypt(string sourceString, string Key, string Iv = "", PaddingMode padding = PaddingMode.PKCS7, CipherMode mode = CipherMode.CBC)
         {
             if (string.IsNullOrWhiteSpace(Iv))
             {
@@ -33,14 +33,14 @@ namespace Tools
             Key = Key.Substring(0, 8);
             byte[] btKey = Encoding.UTF8.GetBytes(Key);
             byte[] btIv = Encoding.UTF8.GetBytes(Iv);
-            using (DESCryptoServiceProvider des = new DESCryptoServiceProvider())
+            using (var des = new DESCryptoServiceProvider())
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     byte[] inData = Encoding.UTF8.GetBytes(sourceString);
 
-                    des.Mode = CipherMode.CBC;//这里指定加密模式为CBC
-                    des.Padding = PaddingMode.PKCS7;
+                    des.Mode = mode;//这里指定加密模式为CBC
+                    des.Padding = padding;
                     var trans = des.CreateEncryptor(btKey, btIv);
                     using (CryptoStream cs = new CryptoStream(ms, trans, CryptoStreamMode.Write))
                     {
@@ -58,7 +58,7 @@ namespace Tools
         /// <param name="encryptedString"></param>
         /// <param name="keyString"></param>
         /// <returns></returns>
-        public static string Decrypt(string encryptedString, string Key, string Iv = "")
+        public static string Decrypt(string encryptedString, string Key, string Iv = "", PaddingMode padding = PaddingMode.PKCS7, CipherMode mode = CipherMode.CBC)
         {
             if (string.IsNullOrWhiteSpace(Iv))
             {
@@ -73,8 +73,8 @@ namespace Tools
             byte[] btIv = Encoding.UTF8.GetBytes(Iv);
             using (DESCryptoServiceProvider des = new DESCryptoServiceProvider())
             {
-                des.Mode = CipherMode.CBC;//这里指定加密模式为CBC
-                des.Padding = PaddingMode.PKCS7;
+                des.Mode = mode;//这里指定加密模式为CBC
+                des.Padding = padding;
 
                 des.Key = btKey;
                 des.IV = btIv;
