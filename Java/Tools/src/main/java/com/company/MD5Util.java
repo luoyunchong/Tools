@@ -1,18 +1,17 @@
 package com.company;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
-public class Md5Util {
-    public static String getYNMD5Base64( String srcString) {
+public class MD5Util {
+    public static String getMD5Base64( String srcString) {
         MessageDigest md = null;
         try
         {
             md = MessageDigest.getInstance("MD5");
         }
-        catch( NoSuchAlgorithmException ex)
+        catch(NoSuchAlgorithmException ex)
         {
             ex.printStackTrace();
             return null;

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-public class Main {
+public class App {
 
     public static void main(String[] args) throws Exception {
         String password="12345678";
@@ -33,7 +33,7 @@ url解密：{'idcard':'330781198509077211','date':'2021-11-11 19:04'}
 
         //MD5
 
-        String x= Md5Util.getYNMD5Base64(sourceString);
+        String x= MD5Util.getMD5Base64(sourceString);
         System.out.println("md5："+x);
 
     }

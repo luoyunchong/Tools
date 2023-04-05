@@ -37,8 +37,8 @@ namespace Tools
                 Array.Copy(ivBytes, useIvBytes, ivBytes.Length);
 
             Aes aes = Aes.Create();
-            //aes.KeySize = 128;//秘钥的大小，以位为单位,128,256等
-            //aes.BlockSize = 128;//支持的块大小
+            aes.KeySize = 256;//秘钥的大小，以位为单位,128,256等
+            aes.BlockSize = 128;//支持的块大小
             aes.Padding = padding;//填充模式
             aes.Mode = mode;
             aes.Key = useKeyBytes;
