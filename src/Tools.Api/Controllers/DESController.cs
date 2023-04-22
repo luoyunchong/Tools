@@ -10,6 +10,7 @@ namespace Tools.Api.Controllers;
 /// <param name="Password">密钥</param>
 public record DESInput(string SourceString, string Password);
 public record User(string idcard, DateTime date);
+
 [ApiController]
 [Route("api/[controller]")]
 public class DESController : ControllerBase

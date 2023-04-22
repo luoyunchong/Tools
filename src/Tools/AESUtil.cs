@@ -1,5 +1,4 @@
-﻿#region AES加密
-
+﻿
 using System;
 using System.Security.Cryptography;
 using System.Text;
@@ -8,6 +7,12 @@ namespace Tools
 {
     public static class AESUtil
     {
+        #region AES加密
+        public static string Encrypt(AESInput input)
+        {
+            return AESUtil.Encrypt(input.SourceString, input.Key, input.Iv, input.PaddingMode, input.CipherMode);
+        }
+
         /// <summary>
         /// AES加密
         /// </summary>
@@ -52,9 +57,11 @@ namespace Tools
 
         #endregion
 
-
-
         #region AES解密
+        public static string Decrypt(AESInput input)
+        {
+            return AESUtil.Decrypt(input.SourceString, input.Key, input.Iv, input.PaddingMode, input.CipherMode);
+        }
         /// <summary>
         /// AES解密
         /// </summary>
@@ -96,5 +103,32 @@ namespace Tools
             return Encoding.UTF8.GetString(resultBytes);
         }
         #endregion
+    }
+
+    /// <summary>
+    /// AES 加密 输入
+    /// </summary>
+    public class AESInput
+    {
+        /// <summary>
+        /// 加密字符串
+        /// </summary>
+        public string SourceString { get; set; }
+        /// <summary>
+        /// 密钥
+        /// </summary>
+        public string Key { get; set; }
+        /// <summary>
+        /// 初始向量
+        /// </summary>
+        public string Iv { get; set; }
+        /// <summary>
+        /// 填充模式
+        /// </summary>
+        public PaddingMode PaddingMode { get; set; }
+        /// <summary>
+        /// 加密模式
+        /// </summary>
+        public CipherMode CipherMode { get; set; }
     }
 }

@@ -12,6 +12,12 @@ namespace Tools
     {
         private static string defaultIvKey = "12345678";
 
+        #region DES 加密
+
+        public static string Encrypt(DESInput input)
+        {
+            return DESUtil.Encrypt(input.SourceString, input.Key, input.Iv, input.PaddingMode, input.CipherMode);
+        }
         /// <summary>
         /// 加密 密钥和向量必须为8位
         /// </summary>
@@ -50,6 +56,14 @@ namespace Tools
                     return Convert.ToBase64String(ms.ToArray());
                 }
             }
+        }
+        #endregion
+
+        #region DES 解密
+
+        public static string Decrypt(DESInput input)
+        {
+            return DESUtil.Decrypt(input.SourceString, input.Key, input.Iv, input.PaddingMode, input.CipherMode);
         }
 
         /// <summary>
@@ -90,7 +104,11 @@ namespace Tools
                     return Encoding.UTF8.GetString(ms.ToArray());
                 }
             }
-        }
+        } 
+        #endregion
+    }
 
+    public class DESInput : AESInput
+    {
     }
 }

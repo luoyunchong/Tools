@@ -30,6 +30,12 @@ namespace Tools
             }
         }
 
+        /// <summary>
+        /// 效果和Md5方法相同
+        /// </summary>
+        /// <param name="soureString"></param>
+        /// <param name="mD5Digit"></param>
+        /// <returns></returns>
         public static string Md5Hash(string soureString, MD5Digit mD5Digit = MD5Digit.Digit32)
         {
             string pwd = "";
