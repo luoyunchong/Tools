@@ -35,7 +35,7 @@ jobs:
           
       - run: |
           cd src/Tools.UI/tools.ui
-          pnpm install --frozen-lockfile
+          pnpm install
           pnpm run build
 
       # https://github.com/marketplace/actions/ssh-deploy
