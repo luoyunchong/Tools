@@ -1,6 +1,6 @@
-# Tools
+# Tools 工具预览包
 
-目标：实现在线预览，加密、编码、转换工具，功能如下：
+目标：实现在线预览，加密、编码、转换等工具，功能点如下：
 
 - MD5 信息-摘要算法
 - SM4/SM3/SM2国密
@@ -14,7 +14,8 @@
 
 ## 预览地址
 
-- [https://igeekfan.cn/tools/#/](https://igeekfan.cn/tools/#/)
+- UI [https://igeekfan.cn/tools/#/](https://igeekfan.cn/tools/#/)
+- API [https://igeekfan.cn/tools_api/swagger/index.html](https://igeekfan.cn/tools_api/swagger/index.html)
 
 ## 示例 DES
 
