@@ -48,15 +48,16 @@ public class SM4Controller : ControllerBase
         }
         else
         {
-            byte[] cipher = Encoding.UTF8.GetBytes(input.Data);
-
+            byte[] cipher = Hex.Decode(input.Data);
             byte[] decryptedData = SM4Util.Decrypt_ECB_Padding(key: keyBytes, cipher);
+
             _logger.LogInformation("解密: {0}", Encoding.UTF8.GetString(decryptedData));
+
             return Ok(new
             {
                 sm4Hex = "",
                 sm4Base64 = "",
-                text = Encoding.UTF8.GetString(cipher),
+                text = Encoding.UTF8.GetString(decryptedData),
             });
         }
     }
