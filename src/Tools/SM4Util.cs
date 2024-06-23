@@ -1,10 +1,20 @@
-﻿using Org.BouncyCastle.Crypto;
+﻿using System.Runtime.CompilerServices;
+using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
 using System.Security.Cryptography;
+using System.Text;
+using Org.BouncyCastle.Utilities.Encoders;
+using System;
 
 namespace Tools
 {
+    public enum Base64OrHexEnum
+    {
+        Base64,
+        Hex
+    }
+
     public class SM4Util
     {
         public static string ALGORITHM_NAME = "SM4";
@@ -64,10 +74,23 @@ namespace Tools
         #endregion
 
         #region ECB
+        public static byte[] Encrypt_ECB_Padding(string key, string data)
+        {
+            byte[] keyBytes = Encoding.UTF8.GetBytes(key);
+            byte[] plaintext = Encoding.UTF8.GetBytes(data);
+            return Encrypt_ECB_Padding(keyBytes, plaintext);
+        }
         public static byte[] Encrypt_ECB_Padding(byte[] key, byte[] data)
         {
             IBufferedCipher cipher = GenerateECBCipher(ALGORITHM_NAME_ECB_PADDING, true, key);
             return cipher.DoFinal(data);
+        }
+
+        public static byte[] Decrypt_ECB_Padding(string key, string cipherText, Base64OrHexEnum type = Base64OrHexEnum.Hex)
+        {
+            byte[] keyBytes = Encoding.UTF8.GetBytes(key);
+            byte[] plaintext = type == Base64OrHexEnum.Hex ? Hex.Decode(cipherText) : Convert.FromBase64String(cipherText);
+            return Decrypt_ECB_Padding(keyBytes, plaintext);
         }
 
         public static byte[] Decrypt_ECB_Padding(byte[] key, byte[] cipherText)

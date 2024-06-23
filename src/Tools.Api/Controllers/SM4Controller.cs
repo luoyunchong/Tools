@@ -1,5 +1,6 @@
 using DSSM;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Utilities.Encoders;
 using System.Text;
@@ -48,8 +49,8 @@ public class SM4Controller : ControllerBase
         }
         else
         {
-            byte[] cipher = Hex.Decode(input.Data);
-            byte[] decryptedData = SM4Util.Decrypt_ECB_Padding(key: keyBytes, cipher);
+            byte[] cipher = input.type == Base64OrHexEnum.Hex ? Hex.Decode(input.Data) : Convert.FromBase64String(input.Data);
+            byte[] decryptedData = SM4Util.Decrypt_ECB_Padding(keyBytes, cipher);
 
             _logger.LogInformation("解密: {0}", Encoding.UTF8.GetString(decryptedData));
 
