@@ -14,33 +14,26 @@
                             <n-button type="success" @click="encryptECB">
                                 加密
                             </n-button>
-                            <n-button type="info" @click="decryptDataECB(0)">
-                                解密Base64
-                            </n-button>
-
-                            <n-button type="info" @click="decryptDataECB(1)">
-                                解密Hex
-                            </n-button>
                         </n-space>
                     </n-list-item>
                     <n-list-item>
                         <n-input-group>
-                            <n-input v-model:value="data.sm4base64" type="textarea" placeholder="转换结果" />
+                            <n-input v-model:value="data.sm4base64" type="textarea" placeholder="BASE64" />
                         </n-input-group>
                     </n-list-item>
                     <n-list-item>
                         <n-button type="primary" ghost @click="copy(data.sm4base64)">
-                            复制结果
+                            复制结果BASE64
                         </n-button>
                     </n-list-item>
                     <n-list-item>
                         <n-input-group>
-                            <n-input v-model:value="data.sm4hex" type="textarea" placeholder="转换结果" />
+                            <n-input v-model:value="data.sm4hex" type="textarea" placeholder="16进制（Hex)" />
                         </n-input-group>
                     </n-list-item>
                     <n-list-item>
                         <n-button type="primary" ghost @click="copy(data.sm4hex)">
-                            复制结果
+                            复制结果HEX
                         </n-button>
                     </n-list-item>
                 </n-list>
