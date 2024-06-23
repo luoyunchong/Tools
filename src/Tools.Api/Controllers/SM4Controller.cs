@@ -49,7 +49,7 @@ public class SM4Controller : ControllerBase
         }
         else
         {
-            byte[] cipher = input.type == Base64OrHexEnum.Hex ? Hex.Decode(input.Data) : Convert.FromBase64String(input.Data);
+            byte[] cipher = input.Type == Base64OrHexEnum.Hex ? Hex.Decode(input.Data) : Convert.FromBase64String(input.Data);
             byte[] decryptedData = SM4Util.Decrypt_ECB_Padding(keyBytes, cipher);
 
             _logger.LogInformation("解密: {0}", Encoding.UTF8.GetString(decryptedData));
