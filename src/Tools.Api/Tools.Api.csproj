@@ -8,7 +8,7 @@
 		<UserSecretsId>2d670498-9a54-4008-851d-f81afb957f77</UserSecretsId>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<DockerfileContext>..\..</DockerfileContext>
-		<DocumentationFile></DocumentationFile>
+		<DocumentationFile>Tools.Api.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -32,5 +32,7 @@
 		<ProjectReference Include="..\SM4\SM4.csproj" />
 		<ProjectReference Include="..\Tools\Tools.csproj" />
 	</ItemGroup>
+
+
 
 </Project>

@@ -76,6 +76,16 @@ const routes: Array<RouteRecordRaw> = [
         },
         component: () => import("@/pages/json.vue"),
       },
+       {
+        path: "/jsontocs",
+        name: "jsontocs",
+        meta: {
+          title: "JSON转C#类",
+          keepAlive: true,
+          requireAuth: false,
+        },
+        component: () => import("@/pages/jsontocs.vue"),
+      },
       {
         path: "/captcha",
         name: "captcha",

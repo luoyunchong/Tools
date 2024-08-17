@@ -1,0 +1,321 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tools.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Tools.Api.Controllers.AESController">
+            <summary>
+            AES加解密
+            </summary>
+        </member>
+        <member name="M:Tools.Api.Controllers.AESController.Encrypt(Tools.AESInput)">
+            <summary>
+            AES 加密
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Controllers.AESController.Decrypt(Tools.AESInput)">
+            <summary>
+            AES 解密
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Controllers.CaptchaController.CaptchaImg">
+            <summary>
+            验证码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Tools.Api.Controllers.DESInput">
+            <summary>
+            DES 加密 输入
+            </summary>
+            <param name="SourceString">源加密串</param>
+            <param name="Password">密钥</param>
+        </member>
+        <member name="M:Tools.Api.Controllers.DESInput.#ctor(System.String,System.String)">
+            <summary>
+            DES 加密 输入
+            </summary>
+            <param name="SourceString">源加密串</param>
+            <param name="Password">密钥</param>
+        </member>
+        <member name="P:Tools.Api.Controllers.DESInput.SourceString">
+            <summary>源加密串</summary>
+        </member>
+        <member name="P:Tools.Api.Controllers.DESInput.Password">
+            <summary>密钥</summary>
+        </member>
+        <member name="M:Tools.Api.Controllers.DESController.Encrypt(Tools.Api.Controllers.DESInput)">
+            <summary>
+            DES 加密
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Controllers.DESController.Decrypt(Tools.Api.Controllers.DESInput)">
+            <summary>
+            DES 解密
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Controllers.DESController.Encrypt(Tools.Api.Controllers.User)">
+            <summary>
+            "{'idcard':'330781198509077211','date':'2021-11-11 19:04'}";
+            </summary>
+            <param name="inputUser"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Tools.Api.Controllers.MD5Controller">
+            <summary>
+            MD5 摘要算法
+            </summary>
+        </member>
+        <member name="M:Tools.Api.Controllers.MD5Controller.#ctor(Microsoft.Extensions.Logging.ILogger{Tools.Api.Controllers.MD5Controller})">
+            <summary>
+            MD5 摘要
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:Tools.Api.Controllers.MD5Controller.GetAllMd5(System.String)">
+            <summary>
+             根据源字符串，生成所有MD5摘要算法的结果，包括大小写，32/16位、Base64的结果
+            </summary>
+            <param name="sourceString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Controllers.SM2Controller.Sign(System.String,System.String,System.String@)">
+            <summary>
+            签名，国密SM2
+            </summary>
+            <param name="body">参数内容</param>
+            <param name="privateKey">私钥</param>
+            <param name="sign">签名值</param>
+            <param name="timestamp">时间戳</param>
+        </member>
+        <member name="M:Tools.Api.Controllers.SM2Controller.VerifySign(System.String,System.String,System.String,System.String)">
+            <summary>
+            验签，国密SM2
+            </summary>
+            <param name="body">参数内容</param>
+            <param name="publicKey">公约</param>
+            <param name="sign">签名值</param>
+            <param name="timestamp">时间戳</param>
+            <returns>成功与否</returns>
+        </member>
+        <member name="M:Tools.Api.Controllers.SM2Controller.SM2">
+            <summary>
+            国密SM2
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Controllers.SM3Controller.SM3">
+            <summary>
+            SM3Digest
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Controllers.SM4Controller.ECB_Padding(Tools.Api.DTO.SM4ECBInput)">
+             <summary>
+            加密后的密文(16进制hex): 11D9B2E155AE15A9525455BA0A7CEED0 
+            加密后的密文(hex): 11D9B2E155AE15A9525455BA0A7CEED0 
+            加密后的密文(base64): Edmy4VWuFalSVFW6Cnzu0A== 
+            解密: tuserid002
+            密钥 sW93ZE8rjDeD3!1m
+             </summary>
+             <param name="input">要加密的文本：tuserid002</param>
+        </member>
+        <member name="M:Tools.Api.Controllers.SM4Controller.ECB_NoPadding(System.String)">
+            <summary>
+            0123456789abcdeffedcba9876543210
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Tools.Api.Controllers.SM4Controller.SMSUtil_CBC_NoPadding(System.String)">
+             <summary>
+             data:0123456789abcdeffedcba9876543210
+            加密后的密文(hex): 89FD03EB48C8FCBCE723AD7E5E585515
+            加密后的密文(hex): 89FD03EB48C8FCBCE723AD7E5E585515
+            加密后的密文(base64): if0D60jI/LznI61+XlhVFQ==
+            解密: 0123456789abcdeffedcba9876543210
+             </summary>
+        </member>
+        <member name="M:Tools.Api.Controllers.SM4Controller.ECBTEST">
+             <summary>
+            加密后的密文(hex): 11d9b2e155ae15a9525455ba0a7ceed0 
+            加密后的密文(base64) : Edmy4VWuFalSVFW6Cnzu0A== 
+             </summary>
+        </member>
+        <member name="T:Tools.Api.DTO.MD5Output">
+            <summary>
+            得到MD5的多种结构
+            </summary>
+            <param name="Md5Digit32">32位加密</param>
+            <param name="Md5Digit16">16位加密 </param>
+            <param name="Md5Digit32Lower">32位小写</param>
+            <param name="Md5Digit16Lower">16位小写</param>
+            <param name="Base64Md5Digit32">base64编码32位加密</param>
+            <param name="Base64Md5Digit16">base64编码16位加密</param>
+        </member>
+        <member name="M:Tools.Api.DTO.MD5Output.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            得到MD5的多种结构
+            </summary>
+            <param name="Md5Digit32">32位加密</param>
+            <param name="Md5Digit16">16位加密 </param>
+            <param name="Md5Digit32Lower">32位小写</param>
+            <param name="Md5Digit16Lower">16位小写</param>
+            <param name="Base64Md5Digit32">base64编码32位加密</param>
+            <param name="Base64Md5Digit16">base64编码16位加密</param>
+        </member>
+        <member name="P:Tools.Api.DTO.MD5Output.Md5Digit32">
+            <summary>32位加密</summary>
+        </member>
+        <member name="P:Tools.Api.DTO.MD5Output.Md5Digit16">
+            <summary>16位加密 </summary>
+        </member>
+        <member name="P:Tools.Api.DTO.MD5Output.Md5Digit32Lower">
+            <summary>32位小写</summary>
+        </member>
+        <member name="P:Tools.Api.DTO.MD5Output.Md5Digit16Lower">
+            <summary>16位小写</summary>
+        </member>
+        <member name="P:Tools.Api.DTO.MD5Output.Base64Md5Digit32">
+            <summary>base64编码32位加密</summary>
+        </member>
+        <member name="P:Tools.Api.DTO.MD5Output.Base64Md5Digit16">
+            <summary>base64编码16位加密</summary>
+        </member>
+        <member name="T:Tools.Api.Utils.ImgHelper">
+            <summary>
+            https://cloud.tencent.com/developer/article/2142750
+            </summary>
+        </member>
+        <member name="M:Tools.Api.Utils.ImgHelper.GetVerifyCode(System.String)">
+            <summary>
+            获取图像数字验证码
+            </summary>
+            <param name="text">验证码内容，如4为数字</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.GenerateSm2KeyHex(System.String@,System.String@)">
+            <summary>
+            生成SM2公钥私钥
+            </summary>
+            <param name="publicKey">SM2公钥 16进制</param>
+            <param name="privateKey">SM2私钥 16进制</param>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.GenerateSm2Key(System.Byte[]@,System.Byte[]@)">
+            <summary>
+            生成SM2公钥私钥
+            </summary>
+            <param name="publicKey">SM2公钥</param>
+            <param name="privateKey">SM2私钥</param>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.Sm2Encrypt(System.String,System.String)">
+            <summary>
+            SM2加密
+            </summary>
+            <param name="sourceData">数据源 16进制字符串</param>
+            <param name="publicKey">公钥 16进制字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.Sm2Encrypt(System.Byte[],System.Byte[])">
+            <summary>
+            SM2加密
+            </summary>
+            <param name="sourceData">数据源</param>
+            <param name="publicKey">公钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.Sm2Decrypt(System.String,System.String)">
+            <summary>
+            SM2解密
+            </summary>
+            <param name="sourceData">数据源 16进制字符串</param>
+            <param name="privkey">私钥 16进制字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.Sm2Decrypt(System.Byte[],System.Byte[])">
+            <summary>
+            SM2解密
+            </summary>
+            <param name="sourceData"></param>
+            <param name="privateKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.Sign(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            加签算法 标准C1C2C3模式
+            </summary>
+            <param name="sourceData">源数据</param>
+            <param name="privateKey">私钥</param>
+            <param name="userId">用户标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.VerifySign(System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            验签算法 标准C1C2C3模式
+            </summary>
+            <param name="sourceData">源数据</param>
+            <param name="publicKey">公钥</param>
+            <param name="signData">验签数据</param>
+            <param name="userId">用户标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.GenerateSm4Key">
+            <summary>
+            随机生成SM4秘钥 16位
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.Sm4Encrypt(System.String,System.String)">
+            <summary>
+            SM4加密 采用SM4/ECB/PKCS5Padding
+            </summary>
+            <param name="plaintext">字符串内容</param>
+            <param name="sm4Key">sm4秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.Sm4Encrypt(System.Byte[],System.Byte[])">
+            <summary>
+            SM4加密 采用SM4/ECB/PKCS5Padding
+            </summary>
+            <param name="sourceData">源数据</param>
+            <param name="keyBytes">sm4秘钥</param>
+            <returns>Base64字符串</returns>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.Sm4Decrypt(System.String,System.String)">
+            <summary>
+            SM4解密 采用SM4/ECB/PKCS5Padding
+            </summary>
+            <param name="base64Str">Base64字符串</param>
+            <param name="sm4Key">sm4秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.Sm4Decrypt(System.Byte[],System.Byte[])">
+            <summary>
+            SM4解密 采用SM4/ECB/PKCS5Padding
+            </summary>
+            <param name="sourceData">源数据</param>
+            <param name="keyBytes">sm4秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:Tools.Api.Utils.SMCrypto.Decode(System.String)">
+            <summary>
+            16进制转字节数组
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IGeekFan.FreeKit.Infrastructure.Exceptions.BusinessException">
+            <summary>
+            Exception type for app exceptions
+            </summary>
+        </member>
+    </members>
+</doc>
