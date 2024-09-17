@@ -76,7 +76,7 @@ const routes: Array<RouteRecordRaw> = [
         },
         component: () => import("@/pages/json.vue"),
       },
-       {
+      {
         path: "/jsontocs",
         name: "jsontocs",
         meta: {
@@ -117,6 +117,16 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/pages/markdown.vue"),
       },
     ],
+  },
+  {
+    path: "/m3u8",
+    name: "m3u8",
+    meta: {
+      title: "m3u8",
+      keepAlive: true,
+      requireAuth: false,
+    },
+    component: () => import("@/pages/m3u8.vue"),
   },
   {
     path: "/request",

@@ -9,15 +9,13 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    CodingEditor: typeof import('./src/components/CodingEditor/index.vue')['default']
+    Artplayer: typeof import('./src/components/Artplayer.vue')['default']
     MonacoEditor: typeof import('./src/components/monacoEditor/index.vue')['default']
     NAlert: typeof import('naive-ui')['NAlert']
     NButton: typeof import('naive-ui')['NButton']
     NCard: typeof import('naive-ui')['NCard']
     NCheckbox: typeof import('naive-ui')['NCheckbox']
-    NCode: typeof import('naive-ui')['NCode']
     NDialogProvider: typeof import('naive-ui')['NDialogProvider']
-    NFlex: typeof import('naive-ui')['NFlex']
     NForm: typeof import('naive-ui')['NForm']
     NFormItem: typeof import('naive-ui')['NFormItem']
     NGi: typeof import('naive-ui')['NGi']

@@ -25,6 +25,13 @@
             </n-card>
           </n-gi>
         </n-grid>
+        <n-grid x-gap="12" :cols="4" class="m-t-2">
+          <n-gi>
+            <n-card>
+              <router-link :to="'/m3u8'">M3U8</router-link>
+            </n-card>
+          </n-gi>
+        </n-grid>
         <n-grid xgap="12" :cols="4" style="margin-top: 20px">
           <n-gi>
             <n-alert title="开源地址" type="success">
@@ -40,8 +47,7 @@
 </template>
 
  
-<script lang="ts" setup>
-</script>
+<script lang="ts" setup></script>
 
 <style lang="scss">
 .root {
