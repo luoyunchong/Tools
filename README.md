@@ -1,81 +1,81 @@
-[English](README.en.md) | **简体中文**
+**English** | [简体中文](README.zh-CN.md)
 
-# Tools 工具预览包
+# Tools preview package
 
-目标：实现在线预览，加密、编码、转换等工具，功能点如下：
+The goal is to provide online previews and tools for encryption, encoding, conversion, and related tasks:
 
-- MD5 信息-摘要算法
-- SM4/SM3/SM2国密
+- MD5 message-digest algorithm
+- SM4/SM3/SM2 cryptographic algorithms
 - DES
 - AES
 - BASE64
-- URI 编码
-- JSON格式化
-- 图片验证码(跨平台)
-- 时间戳
-- M3U8文件在线预览 [http://101.34.7.82/tools/#/m3u8](http://101.34.7.82/tools/#/m3u8)
+- URI encoding
+- JSON formatting
+- Image CAPTCHA (cross-platform)
+- Timestamps
+- Online M3U8 file preview [http://101.34.7.82/tools/#/m3u8](http://101.34.7.82/tools/#/m3u8)
 
-## 预览地址
+## Live previews
 
 - UI [https://igeekfan.cn/tools/#/](https://igeekfan.cn/tools/#/)
 - API [https://igeekfan.cn/tools_api/swagger/index.html](https://igeekfan.cn/tools_api/swagger/index.html)
 
-## 示例 DES
+## DES example
 
-- JAVA+C# 相同的DES 加密/解密
+- Equivalent DES encryption and decryption in Java and C#
 
-### C# 调用
+### C# example
 
 ```csharp
     string password = "12345678";
-    string sourceString = "{'idcard':'330781198509077211','date':'2021-11-11 19:04'}";
-    Console.WriteLine("源字符串：" + sourceString);
+    string sourceString = "{'idcard':'000000000000000000','date':'2021-11-11 19:04'}";
+    Console.WriteLine("Source string: " + sourceString);
     var c = DESUtil.Encrypt(sourceString, password);
-    //加密：3tL0BBKZyUpIfO+XJKL1VoeQhEWc0enGG8R//RPBJQCiykspXEBmvabp8yrWTBv+QUL62K7dUL+vbpYV/PwZvw==
-    Console.WriteLine("加密：" + c);
+    // The encrypted value is printed at runtime.
+    Console.WriteLine("Encrypted: " + c);
 
     c = HttpUtility.UrlEncode(c);
-    Console.WriteLine("url编码：" + c);
+    Console.WriteLine("URL encoding: " + c);
 
     Console.WriteLine("================");
 
     c = HttpUtility.UrlDecode(c);
-    Console.WriteLine("url解码：" + c);
+    Console.WriteLine("URL decoding: " + c);
 
     try
     {
         c = DESUtil.Decrypt(c, password);
-        Console.WriteLine("url解密：" + c);
+        Console.WriteLine("URL decryption: " + c);
 
         var user = JsonConvert.DeserializeObject<User>(c);
-        Console.WriteLine("反序列化\n日期：" + user.date);
-        Console.WriteLine("身份证号：" + user.idcard);
+        Console.WriteLine("Deserialized date: " + user.date);
+        Console.WriteLine("ID number: " + user.idcard);
 
     }
     catch (Exception e)
     {
-        Console.WriteLine("无法解密：" + e.StackTrace + e.Message);
+        Console.WriteLine("Unable to decrypt: " + e.StackTrace + e.Message);
     }
 
     Console.WriteLine("------over--------");
     Console.ReadLine();
 ```
 
-### JAVA调用
+### Java example
 
 ```java
     String password="12345678";
 
-    String den = DESUtil.encrypt("{'idcard':'330781198509077211','date':'2021-11-11 19:04'}",password);
-    System.out.println("加密:"+den);
+    String den = DESUtil.encrypt("{'idcard':'000000000000000000','date':'2021-11-11 19:04'}",password);
+    System.out.println("Encrypted: "+den);
 
     String CHARSET="utf-8";
     String encodeStr= URLEncoder.encode(den,CHARSET);
-    System.out.println("url编码:"+den);
+    System.out.println("URL encoding: "+den);
 
     String decodeUrl=URLDecoder.decode(encodeStr,CHARSET);
-    System.out.println("url解码："+decodeUrl);
+    System.out.println("URL decoding: "+decodeUrl);
 
     String ert = DESUtil.decrypt(decodeUrl,password);
-    System.out.println("url解密："+ert);
+    System.out.println("URL decryption: "+ert);
 ```
